@@ -5,7 +5,7 @@
 
 #banner {
     width: 100%;
-    background-image :url("/media/images/phuquybovien.jpg");
+    background-image :url("Views/media/images/phuquybovien.jpg");
     height: 463px;
     margin-top:40px;
     display: flex;
