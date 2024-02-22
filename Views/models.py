@@ -6,7 +6,7 @@ class Product(models.Model):
     name = models.CharField(max_length=50,default="")
     price = models.DecimalField(max_digits=5, decimal_places=2 , default = 0)
     description = models.CharField(max_length= 2000)
-    link = models.ImageField( upload_to='media/images')
+    link = models.ImageField( upload_to='Views/media/images')
     review = models.IntegerField(default=0)
     ingredient = models.CharField(default = " ", max_length=200 , blank = True)
     def __str__(self) -> str:
