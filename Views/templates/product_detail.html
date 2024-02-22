@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block product%}
+<div class="frame" style="width: 76%; height: 100%; margin: auto; box-sizing: border-box; display: flex; background-image: url('{{items.link.url}}');background-size: 100% 100%;background-position: center;background-repeat: no-repeat;">
+    <div class="frame_info">
+        <div class="item_container">
+            <h1 class="item_name"> <strong> {{ items.name }} </strong></h1>
+            <div class="info_container">
+                <div class="info_detail">
+                    <div class="image_container">
+                        <img src="{{ items.link.url }}" alt="{{ items.name }}">
+                     </div>
+                    
+                </div>
+                <div class="info_detail" id="i_i_d">
+                    <p class="item item_price"><i class="fa-solid fa-money-check-dollar"></i><span class="material-symbols-outlined"></span> Giá bán:</p>
+                    <p class="item"><span> {{ items.price }} </span> <i class="fa-solid fa-dollar-sign"></i> </p>
+                    <p class="item item_des"> <i class="fa-solid fa-comment-medical"></i>  Mô tả:</p>
+                    <p class="item">{{ items.description}} </p>
+
+                    <div class="quantity-container">
+                        <div class="quantity-name">
+                            <label for="quantityValue">Số lượng:</label>
+                        </div>
+                        <div class="quantity-click">
+                            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                            <input type="text" class="quantity-input" value="1" id="quantityValue">
+                            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                        </div>
+
+                    </div>
+                    <div class="product-action-item">
+
+                        <button onclick="showOverlay()" id="button_overlay1">Đặt hàng</button>
+    
+                    <!-- Khối overlay -->
+                        <div id="overlay1" class="overlay" >
+                            <!-- Nội dung của overlay -->
+                            <div class="overlay-content">
+                                <h2>Overlay Content</h2>
+                                <div class="overlay-button">
+                                    <button onclick="hideOverlay()">Close</button>
+                                    <button onclick="hideOverlay()"> Mua Hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="showOverlay()" id="button_overlay2">Đặt Trước</button>
+        
+                        <!-- Khối overlay  -->
+                        <div id="overlay2" class="overlay" >
+                            <!-- Nội dung của overlay -->
+                            <div class="overlay-content">
+                                <h2>Overlay Content</h2>
+                                <div class="overlay-button">
+                                    <button onclick="hideOverlay()">Close</button>
+                                    <button onclick="hideOverlay()"> Mua Hàng</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <button onclick="showOverlay()" id="button_overlay3"><i class="fa-regular fa-message"></i>Nhắn tin</button>
+        
+                        <!-- Khối overlay -->
+                        <div id="overlay3" class="overlay" >
+                            <!-- Nội dung của overlay -->
+                            <div class="overlay-content">
+                                <h1>dm </h1>
+                                <button onclick="hideOverlay()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frame_relate">
+        <!-- Nội dung phần frame_relate (nếu có) -->
+        <h1><strong>Best seller</strong></h1>
+        {% for food in price %}
+            <div class="food-item">
+                <p class="r-item" style="font-size: 25px;"> {{ forloop.counter|stringformat:"02d" }}</p>
+                <img class="r-item food-image" src="{{ food.link.url }}" alt="{{ food.name }}">
+                <div class="r-item food-details">
+                    
+                    <a href="{% url 'product_detail' food.id %}"><h2 id="name-top-food"><strong >{{ food.name }}</strong></h2></a>
+                    <p style="padding-top: 14px ;">Giá: {{ food.price }}$</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+<script>
+    function showOverlay() {
+        // Hiển thị overlay khi nút được nhấn
+        var buttonId = event.target.id;
+        ids = buttonId.split('_');
+        id = ids[1];
+        document.getElementById(id).style.display = 'block';
+    }
+    
+    function hideOverlay() {
+    // Ẩn overlay khi nút "Close" được nhấn
+        var overlayElements = document.querySelectorAll('[id^="overlay"]');
+
+        // Ẩn tất cả các phần tử có ID bắt đầu với "overlay"
+        overlayElements.forEach(function (element) {
+            element.style.display = 'none';
+        });
+    }
+    function increaseQuantity() {
+        var quantityInput = document.getElementById('quantityValue');
+        var currentValue = parseInt(quantityInput.value, 10);
+        quantityInput.value = currentValue + 1;
+    }
+  
+      function decreaseQuantity() {
+        var quantityInput = document.getElementById('quantityValue');
+        var currentValue = parseInt(quantityInput.value, 10);
+        if (currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+        }
+    }
+</script>
+
+
+{%endblock%}

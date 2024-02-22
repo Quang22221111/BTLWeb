@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 2000px;
+}
+.comment-frame {
+    display: none;
+}
+
+.comment {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+

@@ -1,0 +1,38 @@
+.block {
+    position: relative;
+    height: 100px;
+    width: 50vw;
+    margin: auto;
+    background-color: rgb(179, 255, 137);
+    overflow: hidden; /* Ẩn phần nội dung vượt quá chiều cao khối */
+    transition: height 0.3s ease; /* Thêm hiệu ứng chuyển động cho việc thay đổi chiều cao */
+  }
+  
+div::before {
+  content: "Đây là trước nội dung.";
+}.expanded {
+    height: auto; /* Khi có lớp 'expanded', khối sẽ mở rộng đến chiều cao tự nhiên của nội dung */
+  }
+.button{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+  }
+
+div::before {
+    content: "Đây là trước nội dung.";
+  }
+
+.item-detail{
+    height: 500px;
+    width: 60vw;
+    top: 0px;
+    margin: auto;
+    background-color: rgb(255, 214, 175);
+}
+
+@media (max-width : 600px) {
+    .item-detail{
+    width: 100vw;
+    }
+}
